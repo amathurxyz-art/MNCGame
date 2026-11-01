@@ -81,22 +81,22 @@
 			console.log('test');
 		}
 		
-		document.getElementById('Fkeypress').addEventListener("mousedown", function(e) {
+		document.getElementById('Fkeypress').addEventListener("touchstart", function(e) {
 			keyPressed='f';
 			console.log('F mousedown');
 			document.getElementById('Fkeypress').style.backgroundColor="red";
 		});
-		document.getElementById('Rkeypress').addEventListener("mousedown", function(e) {
+		document.getElementById('Rkeypress').addEventListener("touchstart", function(e) {
 			keyPressed='r';
 			console.log('R mousedown');
 			document.getElementById('Rkeypress').style.backgroundColor="red";
 		});
-		document.getElementById('Fkeypress').addEventListener("mouseup", function(e) {
+		document.getElementById('Fkeypress').addEventListener("touchend", function(e) {
 			keyPressed='';
 			console.log('F mouseup');
 			document.getElementById('Fkeypress').style.backgroundColor="white";
 		});
-		document.getElementById('Rkeypress').addEventListener("mouseup", function(e) {
+		document.getElementById('Rkeypress').addEventListener("touchend", function(e) {
 			keyPressed='';
 			console.log('R mouseup');
 			document.getElementById('Rkeypress').style.backgroundColor="white";
