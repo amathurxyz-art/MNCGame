@@ -1,0 +1,204 @@
+<html>
+	<head>
+	<style>
+		.gameTable {
+		  border: 1px solid black;
+		  border-radius: 10px;
+		  text-align:center;
+		  font-family:arial;
+		  font-size:25;
+		  background-color:AliceBlue;
+		}
+		body {
+			font-family:arial;
+		}
+	</style>
+	<title>MNC Game</title>
+	</head>
+	
+	<body>
+		<table border=1 align=center table-layout=fixed class="gameTable">
+			<tr>
+				<td style="width:200px;height:100px" id="StatusLine"> </td>
+				<td style="width:200px;height:100px" id="RhC2">Rating:</td>
+				<td style="width:200px;height:100px" id="rating"> </td>
+				<td style="width:200px;height:100px" id="RhC4">Score:</td>
+				<td style="width:200px;height:100px" id="score"> </td></th>		
+			<tr><td style="height:100px" id="R1C1"> </td><td style="height:100px" id="R1C2"> </td><td style="height:100px" id="R1C3"> </td><td style="height:100px" id="R1C4"> </td><td style="height:100px" id="R1C5"> </td></tr>
+			<tr><td style="height:100px" id="R2C1"> </td><td style="height:100px" id="R2C2"> </td><td style="height:100px" id="R2C3"> </td><td style="height:100px" id="R2C4"> </td><td style="height:100px" id="R2C5"> </td></tr>
+			<tr>
+				<td style="height:100px" id="R3C1" onclick=evaluateScore('C1')> </td>
+				<td style="height:100px" id="R3C2" onclick=evaluateScore('C2')> </td>
+				<td style="height:100px" id="R3C3" onclick=evaluateScore('C3')> </td>
+				<td style="height:100px" id="R3C4" onclick=evaluateScore('C4')> </td>
+				<td style="height:100px" id="R3C5" onclick=evaluateScore('C5')> </td>
+			</tr>
+			<tr><td style="height:100px" id="R4C1"> </td><td style="height:100px" id="R4C2"> </td><td style="height:100px" id="R4C3"> </td><td style="height:100px" id="R4C4"> </td><td style="height:100px" id="R4C5"> </td></tr>
+			<tr><td style="height:100px" id="R5C1"> </td><td style="height:100px" id="R5C2"> </td><td style="height:100px" id="R5C3"> </td><td style="height:100px" id="R5C4"> </td><td style="height:100px" id="R5C5"> </td></tr>
+		</table>	
+		<p>
+		<table align=center style="font-size:15;">
+			<tr>
+				<td>Toggle pause: P</td>
+			</tr>
+			<tr>
+				<td> R (pressed) + Click: PMCR, PunchIn </td>
+			</tr>
+			<tr>
+				<td> F (pressed) + Click: USTimeSheet, Deployment </td>
+			</tr>
+			<tr>
+				<td> No action: -10 </td>
+			</tr>
+			<tr>
+				<td> Phising click: -1000, PMCR/PunchIn/WSR/Workday: 100, Others: 10 </td>
+			</tr>
+			<tr>
+				<td> Score <0: Teri to  </td>
+			</tr>			
+			<tr>
+				<td> Score upto 500: Contributor  </td>
+			</tr>			
+			<tr>
+				<td> Score > 500: Achiever  </td>
+			</tr>			
+		<table>
+	<script>
+		
+		function getRandomNumber(min,max) {
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+		
+		function test() {
+			console.log('test');
+		}
+		
+		runGame=true;
+		clicked=false;
+		score=0;
+		lines = ["","","","",""];
+		columnCount=lines.length;
+		cellIDs = ["C1","C1","C1","C1","C1"];
+		keyPressed="";
+		activity = [
+			['Deployment','f',10],
+			['MeetingAccept','',10],
+			['MonthlyStatus','',10],
+			['Phishing','',-1000],
+			['PMCR','r',100],
+			['PunchIn','r',100],
+			['USTimeSheet','f',10],
+			['Workday','',100],
+			['WSR','',100]
+		];
+			
+		function evaluateScore(column) {
+			clicked=true;
+			activityClicked=document.getElementById("R3" + column).innerHTML;
+			console.log(activityClicked);
+			for (i=0;i<activity.length;i++) {
+				if(activity[i][0]==activityClicked) {
+					console.log("Activity Match Found");
+					if (keyPressed==activity[i][1]) {
+						score=score + activity[i][2];
+						document.getElementById("score").innerHTML=String(score);
+						updateRating();
+					}
+				}
+			}
+		}
+		
+
+		document.addEventListener('keydown', function(event) {
+			//document.getElementById("StatusLine").innerHTML=event.key;
+			keyPressed=event.key;
+			console.log(keyPressed);
+			if(keyPressed=='p') {
+				if(runGame) {
+					runGame=false;
+					updateStatus("Paused");
+				}
+				else {
+					runGame=true;
+					updateStatus("Running");
+				}
+			}
+		});
+		
+		document.addEventListener('keyup', function(event) {
+			keyPressed="";
+		});
+		
+		function updateStatus(message) {
+			document.getElementById("StatusLine").innerHTML=message;
+		}
+		
+		function updateRating(message) {
+			if (score>500) {
+				document.getElementById("rating").innerHTML="Achiever &#128526";
+			}
+			if (score<=500 && score>0 ) {
+				document.getElementById("rating").innerHTML="Contributor &#128512";
+			}
+			if (score<=500 && score<0 ) {
+				document.getElementById("rating").innerHTML="Teri to !!! &#128546";
+			}
+		}
+
+		function sleep(ms) {
+			return new Promise(resolve => setTimeout(resolve, ms));
+		}
+
+		async function mainGame() {
+			linesCount=lines.length;
+			updateStatus("Running");
+			while (true) {
+				while(runGame) {
+					if(clicked==false) {
+						score=score - 10;
+						updateRating();
+						document.getElementById("score").innerHTML=String(score);
+					}
+					for (i=linesCount-1;i>0;i--) {
+						lines[i]=lines[i-1];
+						cellIDs[i]=cellIDs[i-1];
+						//console.log("Cell:" + cellIDs[i] + "	Value:" + lines[i]);
+					}
+					
+					//Append new value at the bottom
+					randomActivityID=getRandomNumber(1,activity.length)-1;
+					newActivity = activity[randomActivityID][0];
+					lines[0] = newActivity;
+					newCellID = "C" + String(getRandomNumber(1,5));
+					cellIDs[0] = newCellID;
+					
+					//console.log("New Activity:" + String(randomActivityID));
+					//console.log("New Activity:" + String(newActivity));
+					//console.log("New Cell ID:" + String(newCellID));
+					// Clear the table
+					for (i=linesCount;i>0;i--) {
+						for (j=linesCount;j>0;j--) {
+							document.getElementById("R" + String(i) + "C" + String(j)).innerHTML="";
+						}					
+					}
+					
+					// Load the table				
+					for (i=linesCount;i>0;i--) {
+						document.getElementById("R" + String(i) + cellIDs[linesCount-i]).innerHTML=lines[linesCount-i];
+					}
+					clicked=false;
+					await sleep(3000);
+				}
+				await sleep(500);
+			}
+		}
+
+		mainGame();
+	</script>
+	</body>
+	
+</html>
+
+
+
+
