@@ -84,18 +84,22 @@
 		document.getElementById('Fkeypress').addEventListener("mousedown", function(e) {
 			keyPressed='f';
 			console.log('F mousedown');
+			document.getElementById('Fkeypress').background=blue;
 		});
 		document.getElementById('Rkeypress').addEventListener("mousedown", function(e) {
 			keyPressed='r';
 			console.log('R mousedown');
+			document.getElementById('Rkeypress').background=blue;
 		});
 		document.getElementById('Fkeypress').addEventListener("mouseup", function(e) {
 			keyPressed='';
 			console.log('F mouseup');
+			document.getElementById('Fkeypress').background=white;
 		});
 		document.getElementById('Rkeypress').addEventListener("mouseup", function(e) {
 			keyPressed='';
 			console.log('R mouseup');
+			document.getElementById('Rkeypress').background=white;
 		});		
 		
 		runGame=true;
