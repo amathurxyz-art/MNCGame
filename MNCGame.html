@@ -23,7 +23,8 @@
 				<td style="width:200px;height:100px" id="RhC2">Rating:</td>
 				<td style="width:200px;height:100px" id="rating"> </td>
 				<td style="width:200px;height:100px" id="RhC4">Score:</td>
-				<td style="width:200px;height:100px" id="score"> </td></th>		
+				<td style="width:200px;height:100px" id="score"> </td>
+			</tr>		
 			<tr><td style="height:100px" id="R1C1"> </td><td style="height:100px" id="R1C2"> </td><td style="height:100px" id="R1C3"> </td><td style="height:100px" id="R1C4"> </td><td style="height:100px" id="R1C5"> </td></tr>
 			<tr><td style="height:100px" id="R2C1"> </td><td style="height:100px" id="R2C2"> </td><td style="height:100px" id="R2C3"> </td><td style="height:100px" id="R2C4"> </td><td style="height:100px" id="R2C5"> </td></tr>
 			<tr>
@@ -35,6 +36,13 @@
 			</tr>
 			<tr><td style="height:100px" id="R4C1"> </td><td style="height:100px" id="R4C2"> </td><td style="height:100px" id="R4C3"> </td><td style="height:100px" id="R4C4"> </td><td style="height:100px" id="R4C5"> </td></tr>
 			<tr><td style="height:100px" id="R5C1"> </td><td style="height:100px" id="R5C2"> </td><td style="height:100px" id="R5C3"> </td><td style="height:100px" id="R5C4"> </td><td style="height:100px" id="R5C5"> </td></tr>
+			<tr>
+				<td style="width:200px;height:100px" id="Fkeypress">F</td>
+				<td style="width:200px;height:100px" id="Rkeypress">R</td>
+				<td style="width:200px;height:100px"> </td>
+				<td style="width:200px;height:100px"></td>
+				<td style="width:200px;height:100px"> </td>
+			</tr>			
 		</table>	
 		<p>
 		<table align=center style="font-size:15;">
@@ -72,6 +80,23 @@
 		function test() {
 			console.log('test');
 		}
+		
+		document.getElementById('Fkeypress').addEventListener("mousedown", function(e) {
+			keyPressed='f';
+			console.log('F mousedown');
+		});
+		document.getElementById('Rkeypress').addEventListener("mousedown", function(e) {
+			keyPressed='r';
+			console.log('R mousedown');
+		});
+		document.getElementById('Fkeypress').addEventListener("mouseup", function(e) {
+			keyPressed='';
+			console.log('F mouseup');
+		});
+		document.getElementById('Rkeypress').addEventListener("mouseup", function(e) {
+			keyPressed='';
+			console.log('R mouseup');
+		});		
 		
 		runGame=true;
 		clicked=false;
