@@ -13,7 +13,7 @@
 			font-family:arial;
 		}
 	</style>
-	<title>Manager Training Game v1</title>
+	<title>MNC Game</title>
 	</head>
 	
 	<body>
@@ -85,22 +85,15 @@
 			keyPressed='f';
 			console.log('F mousedown');
 			document.getElementById('Fkeypress').style.backgroundColor="red";
+			document.getElementById('Rkeypress').style.backgroundColor="AliceBlue";
 		});
 		document.getElementById('Rkeypress').addEventListener("touchstart", function(e) {
 			keyPressed='r';
 			console.log('R mousedown');
 			document.getElementById('Rkeypress').style.backgroundColor="red";
-		});
-		document.getElementById('Fkeypress').addEventListener("touchend", function(e) {
-			keyPressed='';
-			console.log('F mouseup');
 			document.getElementById('Fkeypress').style.backgroundColor="AliceBlue";
 		});
-		document.getElementById('Rkeypress').addEventListener("touchend", function(e) {
-			keyPressed='';
-			console.log('R mouseup');
-			document.getElementById('Rkeypress').style.backgroundColor="AliceBlue";
-		});		
+	
 		
 		runGame=true;
 		clicked=false;
@@ -135,6 +128,9 @@
 					}
 				}
 			}
+			keyPressed='';
+			document.getElementById('Fkeypress').style.backgroundColor="AliceBlue";
+			document.getElementById('Rkeypress').style.backgroundColor="AliceBlue";
 		}
 		
 
