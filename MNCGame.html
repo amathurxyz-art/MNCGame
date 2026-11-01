@@ -13,7 +13,7 @@
 			font-family:arial;
 		}
 	</style>
-	<title>Manager Training Game v2</title>
+	<title>Manager Training Game v3</title>
 	</head>
 	
 	<body>
@@ -82,16 +82,28 @@
 		}
 		
 		document.getElementById('Fkeypress').addEventListener("touchstart", function(e) {
-			keyPressed='f';
-			console.log('F mousedown');
-			document.getElementById('Fkeypress').style.backgroundColor="red";
-			document.getElementById('Rkeypress').style.backgroundColor="AliceBlue";
+			if (keyPressed=='f') {
+				keyPressed='';
+				document.getElementById('Fkeypress').style.backgroundColor="AliceBlue";
+				document.getElementById('Rkeypress').style.backgroundColor="AliceBlue";
+			} else {
+				keyPressed='f';
+				console.log('F mousedown');
+				document.getElementById('Fkeypress').style.backgroundColor="red";
+				document.getElementById('Rkeypress').style.backgroundColor="AliceBlue";
+			}		
 		});
 		document.getElementById('Rkeypress').addEventListener("touchstart", function(e) {
-			keyPressed='r';
-			console.log('R mousedown');
-			document.getElementById('Rkeypress').style.backgroundColor="red";
-			document.getElementById('Fkeypress').style.backgroundColor="AliceBlue";
+			if (keyPressed=='r') {
+				keyPressed='';
+				document.getElementById('Fkeypress').style.backgroundColor="AliceBlue";
+				document.getElementById('Rkeypress').style.backgroundColor="AliceBlue";
+			} else {
+				keyPressed='r';
+				console.log('R mousedown');
+				document.getElementById('Fkeypress').style.backgroundColor="AliceBlue";
+				document.getElementById('Rkeypress').style.backgroundColor="red";
+			}
 		});
 	
 		
