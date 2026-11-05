@@ -7,17 +7,21 @@
 		  text-align:center;
 		  font-family:arial;
 		  font-size:25;
-		  background-color:AliceBlue;
+		  color:white;
+		  background-color:DarkSlateGray;
 		}
 		body {
 			font-family:arial;
 		}
 	</style>
-	<title>v4.1 Manager Training Game</title>
+	<title>Manager Training Game v2</title>
 	</head>
 	
 	<body>
 		<table border=1 align=center table-layout=fixed class="gameTable">
+			<tr>
+				<td style="width:200px;height:100px" colspan=5><img src='Game\Diya.png'/><img src='Game\Diya.png'/><img src='Game\Diya.png'/><img src='Game\Diya.png'/><img src='Game\Diya.png'/></td>
+			</tr>					
 			<tr>
 				<td style="width:200px;height:100px" id="StatusLine"> </td>
 				<td style="width:200px;height:100px" id="RhC2">Rating:</td>
@@ -28,17 +32,17 @@
 			<tr><td style="height:100px" id="R1C1"> </td><td style="height:100px" id="R1C2"> </td><td style="height:100px" id="R1C3"> </td><td style="height:100px" id="R1C4"> </td><td style="height:100px" id="R1C5"> </td></tr>
 			<tr><td style="height:100px" id="R2C1"> </td><td style="height:100px" id="R2C2"> </td><td style="height:100px" id="R2C3"> </td><td style="height:100px" id="R2C4"> </td><td style="height:100px" id="R2C5"> </td></tr>
 			<tr>
-				<td style="height:100px;font-weight:bold" id="R3C1" onclick=evaluateScore('C1')> </td>
-				<td style="height:100px;font-weight:bold" id="R3C2" onclick=evaluateScore('C2')> </td>
-				<td style="height:100px;font-weight:bold" id="R3C3" onclick=evaluateScore('C3')> </td>
-				<td style="height:100px;font-weight:bold" id="R3C4" onclick=evaluateScore('C4')> </td>
-				<td style="height:100px;font-weight:bold" id="R3C5" onclick=evaluateScore('C5')> </td>
+				<td style="height:100px;background-color:AliceBlue;font-weight:bold;color:black" id="R3C1" onclick=evaluateScore('C1')> </td>
+				<td style="height:100px;background-color:AliceBlue;font-weight:bold;color:black" id="R3C2" onclick=evaluateScore('C2')> </td>
+				<td style="height:100px;background-color:AliceBlue;font-weight:bold;color:black" id="R3C3" onclick=evaluateScore('C3')> </td>
+				<td style="height:100px;background-color:AliceBlue;font-weight:bold;color:black" id="R3C4" onclick=evaluateScore('C4')> </td>
+				<td style="height:100px;background-color:AliceBlue;font-weight:bold;color:black" id="R3C5" onclick=evaluateScore('C5')> </td>
 			</tr>
 			<tr><td style="height:100px" id="R4C1"> </td><td style="height:100px" id="R4C2"> </td><td style="height:100px" id="R4C3"> </td><td style="height:100px" id="R4C4"> </td><td style="height:100px" id="R4C5"> </td></tr>
 			<tr><td style="height:100px" id="R5C1"> </td><td style="height:100px" id="R5C2"> </td><td style="height:100px" id="R5C3"> </td><td style="height:100px" id="R5C4"> </td><td style="height:100px" id="R5C5"> </td></tr>
 			<tr>
-				<td style="width:200px;height:100px" id="Fkeypress">F</td>
-				<td style="width:200px;height:100px" id="Rkeypress">R</td>
+				<td style="width:200px;height:100px;" id="Fkeypress"><img src='Game\F_Key.png'/></td>
+				<td style="width:200px;height:100px;" id="Rkeypress"><img src='Game\R_Key.png'/></td>
 				<td style="width:200px;height:100px"> </td>
 				<td style="width:200px;height:100px"></td>
 				<td style="width:200px;height:100px"> </td>
