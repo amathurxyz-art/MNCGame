@@ -14,17 +14,11 @@
 			font-family:arial;
 		}
 	</style>
-	<title>v5.1 Manager Training Game</title>
+	<title>Manager Training Game v5</title>
 	</head>
 	
 	<body>
 		<table border=1 align=center table-layout=fixed class="gameTable">
-			<tr>
-				<td style="width:200px;height:100px" colspan=5 align=center>Happy Diwali !!!</td>
-			</tr>
-			<tr>
-				<td style="width:200px;height:100px" colspan=5 align=center>Stress Buster Game</td>
-			</tr>			
 			<tr>
 				<td style="width:200px;height:100px" colspan=5><img src='Game\Diya.png'/><img src='Game\Diya.png'/><img src='Game\Diya.png'/><img src='Game\Diya.png'/><img src='Game\Diya.png'/></td>
 			</tr>					
@@ -51,7 +45,7 @@
 				<td style="width:200px;height:100px;" id="Rkeypress"><img src='Game\R_Key.png'/></td>
 				<td style="width:200px;height:100px"> </td>
 				<td style="width:200px;height:100px"></td>
-				<td style="width:200px;height:100px"> </td>
+				<td style="width:200px;height:100px" id="Pkeypress"><img src='Game\P_Key.png'> </td>
 			</tr>			
 		</table>	
 		<p align=center> How To Play: Click on the light colored mid section text as they appear to earn points </p>
@@ -87,31 +81,32 @@
 			return Math.floor(Math.random() * (max - min + 1)) + min;
 		}
 		
-		function test() {
-			console.log('test');
-		}
+		document.getElementById('Pkeypress').addEventListener("touchstart", function(e) {
+			togglePause();
+		});
 		
 		document.getElementById('Fkeypress').addEventListener("touchstart", function(e) {
 			if (keyPressed=='f') {
 				keyPressed='';
-				document.getElementById('Fkeypress').style.backgroundColor="AliceBlue";
-				document.getElementById('Rkeypress').style.backgroundColor="AliceBlue";
+				document.getElementById('Fkeypress').style.backgroundColor="DarkSlateGray";
+				document.getElementById('Rkeypress').style.backgroundColor="DarkSlateGray";
 			} else {
 				keyPressed='f';
 				console.log('F mousedown');
 				document.getElementById('Fkeypress').style.backgroundColor="red";
-				document.getElementById('Rkeypress').style.backgroundColor="AliceBlue";
+				document.getElementById('Rkeypress').style.backgroundColor="DarkSlateGray";
 			}		
 		});
+		
 		document.getElementById('Rkeypress').addEventListener("touchstart", function(e) {
 			if (keyPressed=='r') {
 				keyPressed='';
-				document.getElementById('Fkeypress').style.backgroundColor="AliceBlue";
-				document.getElementById('Rkeypress').style.backgroundColor="AliceBlue";
+				document.getElementById('Fkeypress').style.backgroundColor="DarkSlateGray";
+				document.getElementById('Rkeypress').style.backgroundColor="DarkSlateGray";
 			} else {
 				keyPressed='r';
 				console.log('R mousedown');
-				document.getElementById('Fkeypress').style.backgroundColor="AliceBlue";
+				document.getElementById('Fkeypress').style.backgroundColor="DarkSlateGray";
 				document.getElementById('Rkeypress').style.backgroundColor="red";
 			}
 		});
@@ -153,21 +148,23 @@
 			keyPressed='';
 		}
 		
+		function togglePause() {
+			if(runGame) {
+				runGame=false;
+				updateStatus("Paused");
+			}
+			else {
+				runGame=true;
+				updateStatus("Running");
+			}
+		}
+		
 
 		document.addEventListener('keydown', function(event) {
 			//document.getElementById("StatusLine").innerHTML=event.key;
 			keyPressed=event.key;
 			console.log(keyPressed);
-			if(keyPressed=='p') {
-				if(runGame) {
-					runGame=false;
-					updateStatus("Paused");
-				}
-				else {
-					runGame=true;
-					updateStatus("Running");
-				}
-			}
+			if(keyPressed=='p') togglePause();
 		});
 		
 		document.addEventListener('keyup', function(event) {
