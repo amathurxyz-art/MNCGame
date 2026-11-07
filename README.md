@@ -1,1 +1,1 @@
-# MNCGame
+# Stress Buster Game
